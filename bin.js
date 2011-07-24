@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var optimist = require('optimist')
+var optimist = require('optimist') // help with option parsing
   , fs = require('fs')
   , path = require('path')
   , child_process = require('child_process')
@@ -23,7 +23,7 @@ optimist
 optimist
   .alias('t', 'test')
   .describe('test', 'Run application tests.')
-
+// 
 
 if (process.argv.length < 3 || optimist.argv.help || optimist.argv._[0] === 'help') {
   optimist.showHelp()
@@ -34,7 +34,9 @@ if (optimist.argv.create) {
   if (typeof optimist.argv.create === 'boolean') {
     var appdir = process.env.PWD
   } else {
+	console.log(process.env.PWD);
     var appdir = path.join(process.env.PWD, optimist.argv.create)
+	console.log(appdir);
     fs.mkdirSync(appdir, 0777)
   }
   fs.mkdirSync(path.join(appdir, 'tmp'), 0777)
